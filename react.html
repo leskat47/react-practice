@@ -10,22 +10,56 @@
     <script src="https://cdn.jsdelivr.net/react/0.14.0-rc1/react.js"></script>
     <script src="https://cdn.jsdelivr.net/react/0.14.0-rc1/react-dom.js"></script>
     <script>
+
+    var contacts = [
+      {key: 1, name: "Fakey McFalserson", email: "fakey@mcfalserson.com", description: "unicorn"},
+      {key: 2, name: "Faux McFake", email: "fauxy@macf.com"},
+      {key: 3, name: "Kubalai"},
+    ]
+
+    var ContactItem = React.createClass({
+      propTypes: {
+        name: React.PropTypes.string.isRequired
+      },
+
+      render: function() {
+        return(
+          React.createElement('li', {},
+            React.createElement('h2', {}, this.props.name),
+            React.createElement('a', {href: 'mailto:'+this.props.emal}, this.props.email),
+            React.createElement('div', {}, this.props.description)
+          )
+        )
+      },
+    });
+
+    var contactItemElements = contacts
+      // .filter(function(contact) { return contact.email })
+      .map(function(contact) { return React.createElement(ContactItem, contact) })
+
     var rootElement =
       React.createElement('div', {},
         React.createElement('h1', {}, "Contacts"),
-        React.createElement('ul', {},
-          React.createElement('li', {},
-            React.createElement('h2', {}, "Fakey McFalserson"),
-            React.createElement('a', {href: 'mailto:fakey@falserson.com'}, 'fakey@mcfalserson.com')
-          ),
-          React.createElement('li', {},
-            React.createElement('h2', {}, "Faux McFake"),
-            React.createElement('a', {href: 'mailto:fauxy@macf.com'}, 'fauxy@macf.com')
-          )
-        )
+        React.createElement('ul', {}, contactItemElements)
       )
 
-        ReactDOM.render(rootElement, document.getElementById('react-app'))
+    // var rootElement =
+    // // createElement args: type, attributes, children
+    //   React.createElement('div', {},
+    //     React.createElement('h1', {}, "Contacts"),
+    //     React.createElement('ul', {},
+    //       React.createElement('li', {},
+    //         React.createElement('h2', {}, "Fakey McFalserson"),
+    //         React.createElement('a', {href: 'mailto:fakey@falserson.com'}, 'fakey@mcfalserson.com')
+    //       ),
+    //       React.createElement('li', {},
+    //         React.createElement('h2', {}, "Faux McFake"),
+    //         React.createElement('a', {href: 'mailto:fauxy@macf.com'}, 'fauxy@macf.com')
+    //       )
+    //     )
+    //   )
+
+      ReactDOM.render(rootElement, document.getElementById('react-app'))
 
     </script>
   </body>
