@@ -17,6 +17,40 @@
       {key: 3, name: "Kubalai"},
     ]
 
+    var newContact = {name: "", email: "", description: ""}
+
+    /*
+     * Components *************************************************
+     */
+
+    var ContactForm = React.createClass({
+      propTypes: {
+        contact: React.PropTypes.object.isRequired
+      },
+
+      render: function() {
+        return(
+          React.createElement('form', {},
+            React.createElement('input', {
+              type:'text',
+              placeholder: 'Name (required)',
+              value: this.props.contact.name
+            }),
+            React.createElement('input', {
+              type: 'email',
+              placeholder: 'Email',
+              value: this.props.contact.email
+            }),
+            React.createElement('input', {
+              type: 'textarea',
+              placeholder: 'Description'
+            }),
+            React.createElement('button', {type: 'submit'}, 'Submit')
+          )
+        )
+      }
+    })
+
     var ContactItem = React.createClass({
       // Gives warning in the console if data is missin
       propTypes: {
@@ -37,13 +71,14 @@
     });
 
     var contactItemElements = contacts
-      // .filter(function(contact) { return contact.email })
+      .filter(function(contact) { return contact.email })
       .map(function(contact) { return React.createElement(ContactItem, contact) })
 
     var rootElement =
       React.createElement('div', {},
         React.createElement('h1', {}, "Contacts"),
-        React.createElement('ul', {}, contactItemElements)
+        React.createElement('ul', {}, contactItemElements),
+        React.createElement(ContactForm, {contact: newContact})
       )
 
     // var rootElement =
