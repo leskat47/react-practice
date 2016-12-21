@@ -1,0 +1,16 @@
+body {
+  background-color: lightblue;
+  font-family: sans-serif;
+}
+
+h1 {
+  color: darkblue;
+}
+
+h2 {
+  color: darkblue;
+}
+
+contact-name {
+  font-weight: bold;
+}
