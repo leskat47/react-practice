@@ -1,0 +1,1 @@
+Github Battle is from the online course React Fundamentals at reacttraining.com. 
